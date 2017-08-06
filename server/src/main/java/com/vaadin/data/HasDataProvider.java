@@ -19,6 +19,8 @@ import java.util.Collection;
 
 import com.vaadin.data.provider.DataProvider;
 
+import com.google.common.collect.Lists;
+
 /**
  * A generic interface for listing components that use a data provider for
  * showing data.
@@ -48,6 +50,10 @@ public interface HasDataProvider<T> extends HasItems<T> {
     @Override
     public default void setItems(Collection<T> items) {
         setDataProvider(DataProvider.ofCollection(items));
+    }
+    
+    public default void setItems(Iterable<T> items) {
+       setItems(Lists.newArrayList(items));
     }
 
 }
